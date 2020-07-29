@@ -1,0 +1,44 @@
+{
+    "name": {
+        "0": "Digikala Users Comments",
+        "1": "SnappFood Users Comments",
+        "2": "SentiPers: A Sentiment Analysis Corpus for Persian (binary)",
+        "3": "SentiPers: A Sentiment Analysis Corpus for Persian (multi)"
+    },
+    "text": {
+        "0": "بنده در حال حاصر بیش از یک ماهه که دادم از این سری از سامشونگ a استفاده می کنم که بنطرم گوشیه عالی هس اوایلش بازی ها و برنانه های سنگینی مثل پابجی رو روش اجرا کردم به مدت های طولانی بازی می کردم مثلا ۳ یا ۴ ساعت فقط در روز هر چند گرافیکو پایین یا معمولی میزاشتم اما اصلن داغ نمی کرد یا لگ نمی زد فعد از گذشت دقیقا ۱ ماه و ۲ روز تازه احساس می کردم یکم کناره های دوربین پشت داغ کرده که اونم اصن قابل حس نبود و تا الان زیاد توجه ی منو جلب نکرده اما در کل عالی هست سرعت فست چارچینگشم عالیه راحت واست نگه می داره و در صورت استفاده نکردن از گوشی هر ۶ ساعت یه درصد کم می کرد که اونم واقعا امار عالی هس در کل خیلی خوبه اما دوربین جلوش نسبت به a 50 ضعیف تر اما عقبش خیلی بهتره",
+        "1": "کباب ساطوریه تندش در حدی تند بود که انگار یه مشت فلفل ریختن تو دهنت یا فلفل تند خورده باشی در حدی که اشکمون از شدت تندیش درومد و نشد خورد",
+        "2": "نرم افزار یکی از نقاط قوت این گوشی دو سیم کارته،  بهره گیری آن از نسخه 4 یا Ice Cream Sandwich سیستم عامل اندروید است.",
+        "3": "من اين گوشيو خريدم ولي زود فرختمش شارزش اصلا دوام نمياره برا همراه بانکم چون منو نداره نميشه باهاش  کار کرد"
+    },
+    "labels": {
+        "0": "no_idea, not_recommended, recommended",
+        "1": "sad, happy",
+        "2": "negative, positive",
+        "3": "furious, angry, neutral, happy, delighted"
+    },
+    "description": {
+        "0": "description",
+        "1": "description",
+        "2": "description",
+        "3": "description"
+    },
+    "model_name": {
+        "0": "m3hrdadfi/albert-fa-base-v2-sentiment-digikala",
+        "1": "m3hrdadfi/albert-fa-base-v2-sentiment-snappfood",
+        "2": "m3hrdadfi/albert-fa-base-v2-sentiment-deepsentipers-binary",
+        "3": "m3hrdadfi/albert-fa-base-v2-sentiment-deepsentipers-mult/"
+    },
+    "direction": {
+        "0": "rtl",
+        "1": "rtl",
+        "2": "rtl",
+        "3": "rtl"
+    },
+    "mapper": {
+        "0": {},
+        "1": {},
+        "2": {},
+        "3": {}
+    }
+}

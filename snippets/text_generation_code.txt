@@ -1,0 +1,58 @@
+import tensorflow as tf
+from transformers import AutoConfig, AutoTokenizer
+from transformers import TFAlbertForMaskedLM
+
+
+def cleanize(text):
+    # do cleaning
+    return text
+
+
+model_name = "Your model naame"
+config = AutoConfig.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+labels = list(config.label2id.keys())
+model = TFAlbertForMaskedLM.from_pretrained(model_name)
+
+text = "Your text comes here!"
+text = cleanzie(text)
+
+words = np.array(text.split())
+masks = np.where(words == tokenizer.mask_token)[0]
+
+inputs = tokenizer.batch_encode_plus(
+    [text],
+    add_special_tokens=True,
+    return_tensors='tf',
+    pad_to_max_length=True)
+
+outputs = model(inputs.data, training=False)[0]
+
+batch_size = outputs.shape[0]
+masked_words = {}
+masked_colors = ['#0096C7', '#00B4D8', '#48CAE4', '#90E0EF', '#ADE8F4']
+
+for i in range(batch_size):
+    input_ids = inputs["input_ids"][i]
+
+    masked_indices = tf.where(input_ids == tokenizer.mask_token_id).numpy()
+    for masked_index, mask in zip(masked_indices, masks):
+        masked_index = masked_index[0]
+        masked_words[mask] = []
+
+        logits = outputs[i, masked_index, :]
+        probs = tf.nn.softmax(logits)
+        topk = tf.math.top_k(probs, k=5)
+        values, predictions = topk.values.numpy(), topk.indices.numpy()
+
+        for j, (v, p) in enumerate(zip(values.tolist(), predictions.tolist())):
+            tokens = input_ids.numpy()
+            tokens[masked_index] = p
+            masked_words[mask].append({
+                'score': v,
+                'token': p,
+                'color': masked_colors[j],
+                'token_str': tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(p))
+            })
+
+print(masked_words, words)

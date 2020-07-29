@@ -1,2 +1,1 @@
-# albert-persian-lab
-ALBERT Persian Playground
+# ALBERT PERSIAN LAB

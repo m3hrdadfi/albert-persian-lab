@@ -1,0 +1,236 @@
+{
+    "name": {
+        "0": "PEYMA",
+        "1": "ARMAN",
+        "2": "PEYMA + ARMAN"
+    },
+    "text": {
+        "0": "مدیرکل محیط زیست استان البرز با بیان اینکه با بیان اینکه موضوع شیرابه\u200Cهای زباله\u200Cهای انتقال یافته در منطقه حلقه دره خطری برای این استان است، گفت: در این مورد گزارشاتی در ۲۵ مرداد ۱۳۹۷ تقدیم مدیران استان شده است.",
+        "1": "مدیرکل محیط زیست استان البرز با بیان اینکه با بیان اینکه موضوع شیرابه\u200Cهای زباله\u200Cهای انتقال یافته در منطقه حلقه دره خطری برای این استان است، گفت: در این مورد گزارشاتی در ۲۵ مرداد ۱۳۹۷ تقدیم مدیران استان شده است.",
+        "2": "مدیرکل محیط زیست استان البرز با بیان اینکه با بیان اینکه موضوع شیرابه\u200Cهای زباله\u200Cهای انتقال یافته در منطقه حلقه دره خطری برای این استان است، گفت: در این مورد گزارشاتی در ۲۵ مرداد ۱۳۹۷ تقدیم مدیران استان شده است."
+    },
+    "labels": {
+        "0": "B_DAT, B_LOC, B_MON, B_ORG, B_PCT, B_PER, B_TIM, I_DAT, I_LOC, I_MON, I_ORG, I_PCT, I_PER, I_TIM, O",
+        "1": "B-event, B-fac, B-loc, B-org, B-pers, B-pro, I-event, I-fac, I-loc, I-org, I-pers, I-pro, O",
+        "2": "B-date, B-event, B-facility, B-location, B-money, B-organization, B-person, B-product, B-time, B-percent, I-date, I-event, I-facility, I-location, I-money, I-organization, I-person, I-product, I-time, I-percent, O"
+    },
+    "description": {
+        "0": "description",
+        "1": "description",
+        "2": "description"
+    },
+    "model_name": {
+        "0": "m3hrdadfi/albert-fa-base-v2-ner-peyma",
+        "1": "m3hrdadfi/albert-fa-base-v2-ner-arman",
+        "2": "m3hrdadfi/albert-fa-base-v2-ner/"
+    },
+    "direction": {
+        "0": "rtl",
+        "1": "rtl",
+        "2": "rtl"
+    },
+    "mapper": {
+        "0": {
+            "B_DAT": [
+                "تاریخ",
+                "#FFADAD"
+            ],
+            "B_LOC": [
+                "موقعیت",
+                "#FFD6A5"
+            ],
+            "B_MON": [
+                "پول",
+                "#FDFFB6"
+            ],
+            "B_ORG": [
+                "سازمان",
+                "#CAFFBF"
+            ],
+            "B_PCT": [
+                "درصد",
+                "#9BF6FF"
+            ],
+            "B_PER": [
+                "شخص",
+                "#A0C4FF"
+            ],
+            "B_TIM": [
+                "زمان",
+                "#BDB2FF"
+            ],
+            "I_DAT": [
+                "تاریخ",
+                "#FFADAD"
+            ],
+            "I_LOC": [
+                "موقعیت",
+                "#FFD6A5"
+            ],
+            "I_MON": [
+                "پول",
+                "#FDFFB6"
+            ],
+            "I_ORG": [
+                "سازمان",
+                "#CAFFBF"
+            ],
+            "I_PCT": [
+                "درصد",
+                "#9BF6FF"
+            ],
+            "I_PER": [
+                "شخص",
+                "#A0C4FF"
+            ],
+            "I_TIM": [
+                "زمان",
+                "#BDB2FF"
+            ],
+            "O": [
+                null,
+                null
+            ]
+        },
+        "1": {
+            "B-event": [
+                "رویداد",
+                "#FFADAD"
+            ],
+            "B-fac": [
+                "امکانات",
+                "#FFD6A5"
+            ],
+            "B-loc": [
+                "موقعیت",
+                "#FDFFB6"
+            ],
+            "B-org": [
+                "سازمان",
+                "#CAFFBF"
+            ],
+            "B-pers": [
+                "شخص",
+                "#9BF6FF"
+            ],
+            "B-pro": [
+                "محصول",
+                "#A0C4FF"
+            ],
+            "I-event": [
+                "رویداد",
+                "#FFADAD"
+            ],
+            "I-fac": [
+                "امکانات",
+                "#FFD6A5"
+            ],
+            "I-loc": [
+                "موقعیت",
+                "#FDFFB6"
+            ],
+            "I-org": [
+                "سازمان",
+                "#CAFFBF"
+            ],
+            "I-pers": [
+                "شخص",
+                "#9BF6FF"
+            ],
+            "I-pro": [
+                "محصول",
+                "#A0C4FF"
+            ],
+            "O": [
+                null,
+                null
+            ]
+        },
+        "2": {
+            "B-date": [
+                "تاریخ",
+                "#FFADAD"
+            ],
+            "B-event": [
+                "رویداد",
+                "#FFD6A5"
+            ],
+            "B-facility": [
+                "امکانات",
+                "#FDFFB6"
+            ],
+            "B-location": [
+                "موقعیت",
+                "#CAFFBF"
+            ],
+            "B-money": [
+                "پول",
+                "#9BF6FF"
+            ],
+            "B-organization": [
+                "سازمان",
+                "#A0C4FF"
+            ],
+            "B-person": [
+                "شخص",
+                "#BDB2FF"
+            ],
+            "B-product": [
+                "محصول",
+                "#BDB2FF"
+            ],
+            "B-time": [
+                "زمان",
+                "#05668D"
+            ],
+            "B-percent": [
+                "درصد",
+                "#028090"
+            ],
+            "I-date": [
+                "تاریخ",
+                "#FFADAD"
+            ],
+            "I-event": [
+                "رویداد",
+                "#FFD6A5"
+            ],
+            "I-facility": [
+                "امکانات",
+                "#FDFFB6"
+            ],
+            "I-location": [
+                "موقعیت",
+                "#CAFFBF"
+            ],
+            "I-money": [
+                "پول",
+                "#9BF6FF"
+            ],
+            "I-organization": [
+                "سازمان",
+                "#A0C4FF"
+            ],
+            "I-person": [
+                "شخص",
+                "#BDB2FF"
+            ],
+            "I-product": [
+                "محصول",
+                "#BDB2FF"
+            ],
+            "I-time": [
+                "زمان",
+                "#05668D"
+            ],
+            "I-percent": [
+                "درصد",
+                "#028090"
+            ],
+            "O": [
+                null,
+                null
+            ]
+        }
+    }
+}
