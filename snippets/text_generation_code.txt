@@ -1,6 +1,6 @@
 import tensorflow as tf
 from transformers import AutoConfig, AutoTokenizer
-from transformers import TFBertForMaskedLM
+from transformers import TFAlbertForMaskedLM
 
 
 def cleanize(text):
@@ -12,7 +12,7 @@ model_name = "Your model naame"
 config = AutoConfig.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 labels = list(config.label2id.keys())
-model = TFBertForSequenceClassification.from_pretrained(model_name)
+model = TFAlbertForMaskedLM.from_pretrained(model_name)
 
 text = "Your text comes here!"
 text = cleanzie(text)
@@ -52,7 +52,7 @@ for i in range(batch_size):
                 'score': v,
                 'token': p,
                 'color': masked_colors[j],
-                'token_str': tokenizer.convert_ids_to_tokens(p)
+                'token_str': tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(p))
             })
 
 print(masked_words, words)

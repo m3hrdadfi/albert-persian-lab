@@ -1,0 +1,45 @@
+textarea,
+.ner-color,
+.ner-box,
+.masked-box {
+  font-family: Vazir !important;
+  text-align: right;
+  direction: rtl !important;
+}
+
+.ner-color {
+  margin-bottom: 10px;
+  text-align: center;
+  text-align: center;
+}
+.ner-color span {
+  display: inline-block !important;
+  padding: 2px;
+  margin: 2px 0;
+}
+
+.ner-box {
+  font-size: 18px !important;
+  line-height: 20px !important;
+  text-align: right;
+  color: #343434 !important;
+}
+.ner-box .token, .token span {
+  display: inline-block !important;
+  padding: 2px;
+  margin: 2px 0;
+}
+.ner-box .token.token-ner {
+  font-weight: bold;
+  color: #000 !important;
+}
+.ner-box .token-ner .ner-label {
+  font-size: 10px;
+}
+
+.masked-box {
+  text-align: justify;
+}
+.masked-box .token {
+  padding: 0;
+}

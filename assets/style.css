@@ -1,0 +1,22 @@
+.sidebar .sidebar-content {
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
+
+.fullScreenFrame > div {
+  display: flex;
+  justify-content: center;
+}
+
+.element-container {
+  width: 290px;
+}
+.nav-icons {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+.nav-icons a {
+  margin: 0 8px;
+  display: inline-block;
+}

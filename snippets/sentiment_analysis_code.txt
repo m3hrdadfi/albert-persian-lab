@@ -1,6 +1,6 @@
 import tensorflow as tf
 from transformers import AutoConfig, AutoTokenizer
-from transformers import TFBertForSequenceClassification
+from transformers import TFAlbertForSequenceClassification
 
 
 def cleanize(text):
@@ -12,7 +12,7 @@ model_name = "Your model name"
 config = AutoConfig.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 labels = list(config.label2id.keys())
-model = TFBertForSequenceClassification.from_pretrained(model_name)
+model = TFAlbertForSequenceClassification.from_pretrained(model_name)
 
 text = "Your text comes here!"
 text = cleanzie(text)

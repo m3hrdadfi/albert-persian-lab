@@ -1,35 +1,37 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
-from transformers import AutoConfig, AutoTokenizer
-from transformers import TFBertForSequenceClassification
-from transformers import TFBertForTokenClassification
-from transformers import TFBertForMaskedLM
+
+from transformers import AlbertConfig, AlbertTokenizer
+from transformers import TFAlbertForSequenceClassification
+from transformers import TFAlbertForTokenClassification
+from transformers import TFAlbertForMaskedLM
+
 from .cleaning import cleanize
 
 
 @st.cache(allow_output_mutation=True)
 def load_config(_id):
     """ Load the model configuration """
-    return AutoConfig.from_pretrained(_id)
+    return AlbertConfig.from_pretrained(_id)
 
 
 @st.cache(allow_output_mutation=True)
 def load_tokenizer(_id):
     """ Load the model tokenizer """
-    return AutoTokenizer.from_pretrained(_id)
+    return AlbertTokenizer.from_pretrained(_id)
 
 
 @st.cache(allow_output_mutation=True)
-def load_model(_id, _type):
+def load_model(_id, _type, **kwargs):
     """ Load the models """
 
     models = {
-        'TFBertForSequenceClassification': TFBertForSequenceClassification,
-        'TFBertForTokenClassification': TFBertForTokenClassification,
-        'TFBertForMaskedLM': TFBertForMaskedLM
+        'TFAlbertForSequenceClassification': TFAlbertForSequenceClassification,
+        'TFAlbertForTokenClassification': TFAlbertForTokenClassification,
+        'TFAlbertForMaskedLM': TFAlbertForMaskedLM
     }
-    model = models[_type].from_pretrained(_id)
+    model = models[_type].from_pretrained(_id, cache_dir='./tmp/models/', **kwargs)
     return model
 
 
@@ -49,13 +51,12 @@ def sequence_predicting(model, tokenizer, text, labels):
 def token_predicting(model, tokenizer, text, labels):
     """ Token-prediction for tasks like named entity recognition, ... """
     text = cleanize(text)
-
     tokens = tokenizer.tokenize(tokenizer.decode(tokenizer.encode(text)))
     inputs = tokenizer.encode(text, return_tensors="tf", max_length=128)
 
     outputs = model(inputs)[0]
     predictions = tf.argmax(outputs, axis=2)
-    predictions = [(token, labels[prediction]) for token, prediction in
+    predictions = [(tokenizer.convert_tokens_to_string([token]), labels[prediction]) for token, prediction in
                    zip(tokens, predictions[0].numpy())]
 
     return predictions
@@ -100,7 +101,7 @@ def text_generation(model, tokenizer, text):
                     'score': v,
                     'token': p,
                     'color': masked_colors[j],
-                    'token_str': tokenizer.convert_ids_to_tokens(p)
+                    'token_str': tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(p))
                 })
 
     return masked_words, words

@@ -20,7 +20,7 @@ def load_image(image_path, image_resize=None):
     return image
 
 
-def load_css(css_path):
+def local_css(css_path):
     """ Load css locally.
 
     Args:
@@ -40,6 +40,7 @@ def remote_css(css_url):
 
 
 def icon(_st, icon_name, link=None, class_name=''):
+    """ Load a single icon """
     if link:
         _st.markdown(f'<a href="{link}" class="{class_name}"><i class="fa {icon_name}"></i></a>',
                      unsafe_allow_html=True)
