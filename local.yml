@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: lab_local_streamlit
+    volumes:
+      - .:/app
+    ports:
+      - "8502:8501"
+    command: /start

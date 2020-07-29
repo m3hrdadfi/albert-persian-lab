@@ -1,0 +1,86 @@
+version: '3'
+
+volumes:
+  production_letsencrypt: {}
+
+networks:
+  backend:
+  proxy:
+    external: true
+
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: lab_production_traefik
+    restart: always
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    command:
+      - --api.insecure=false
+      - --api.dashboard=true
+      - --api.debug=true
+      - --log.filePath=./apps/traefik/logs/traefik.log
+      - --log.level=DEBUG
+      - --log.format=json
+      - --accesslog=true
+      - --accesslog.format=json
+      - --accesslog.filepath=./apps/traefik/logs/access.log
+      - --accesslog.bufferingsize=100
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=proxy
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secured.address=:443
+      - --certificatesresolvers.le.acme.httpChallenge.entrypoint=web
+      - --certificatesresolvers.le.acme.email=m3hrdadfi@m3hrdadfi.com
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+    volumes:
+      - production_letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`albert-lab-traefik.m3hrdadfi.com`)"
+      - "traefik.http.routers.api.entrypoints=web"
+      - "traefik.http.routers.api-secured.rule=Host(`albert-lab-traefik.m3hrdadfi.com`)"
+      - "traefik.http.routers.api-secured.entrypoints=web-secured"
+      - "traefik.http.routers.api.service=api@internal" # Let the dashboard access the traefik api
+      - "traefik.http.routers.api.middlewares=api-auth"
+      - "traefik.http.routers.api-secured.middlewares=api-auth"
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: lab_production_streamlit
+    restart: always
+    networks:
+      - proxy
+      - backend
+    volumes:
+      - .:/app
+    ports:
+      - "8501:8501"
+    command: /start
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.streamlit.rule=Host(`albert-lab.m3hrdadfi.com`)"
+      - "traefik.http.routers.streamlit.entrypoints=web"
+      - "traefik.http.routers.streamlit-secured.rule=Host(`albert-lab.m3hrdadfi.com`)"
+      - "traefik.http.routers.streamlit-secured.entrypoints=web-secured"
+      - "traefik.http.routers.streamlit-secured.tls.certresolver=le"
+      - "traefik.http.services.streamlit.loadbalancer.server.port=8501" # it seems you always need to give traefik a port so it 'notices' the service
+      - "traefik.http.routers.streamlit.middlewares=streamlit-redirect-to-https"
+      - "traefik.http.middlewares.streamlit-redirect-to-https.redirectscheme.scheme=https"
+
+  mail:
+    image: bytemark/smtp
+    restart: always
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=false"
