@@ -1,0 +1,27 @@
+import tensorflow as tf
+from transformers import AutoConfig, AutoTokenizer
+from transformers import TFBertForSequenceClassification
+
+
+def cleanize(text):
+    # do cleaning
+    return text
+
+
+model_name = "Your model naame"
+config = AutoConfig.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+labels = list(config.label2id.keys())
+model = TFBertForSequenceClassification.from_pretrained(model_name)
+
+text = "Your text comes here!"
+text = cleanzie(text)
+inputs = tokenizer.encode(text, return_tensors="tf", max_length=128)
+
+logits = model(inputs)[0]
+outputs = tf.keras.backend.softmax(logits)
+prediction = tf.argmax(outputs, axis=1)
+prediction = prediction[0].numpy()
+scores = outputs[0].numpy()
+
+print(labels[prediction], scores)

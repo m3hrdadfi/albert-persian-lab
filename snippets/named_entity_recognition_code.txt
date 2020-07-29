@@ -1,0 +1,27 @@
+import tensorflow as tf
+from transformers import AutoConfig, AutoTokenizer
+from transformers import TFBertForTokenClassification
+
+
+def cleanize(text):
+    # do cleaning
+    return text
+
+
+model_name = "Your model name"
+config = AutoConfig.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+labels = list(config.label2id.keys())
+model = TFBertForTokenClassification.from_pretrained(model_name)
+
+text = "Your text comes here!"
+text = cleanzie(text)
+tokens = tokenizer.tokenize(tokenizer.decode(tokenizer.encode(text)))
+inputs = tokenizer.encode(text, return_tensors="tf", max_length=tokenizer.max_len)
+
+outputs = model(inputs)[0]
+predictions = tf.argmax(outputs, axis=2)
+predictions = [(token, labels[prediction]) for token, prediction in
+               zip(tokens, predictions[0].numpy())]
+
+print(predictions)
