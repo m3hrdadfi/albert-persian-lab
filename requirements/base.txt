@@ -1,6 +1,6 @@
 streamlit==0.64.0
 numpy==1.18.5
-Pillow==8.1.1
+Pillow==8.2.0
 pandas==1.0.5
 hazm==0.7.0
 clean-text[gpl]
