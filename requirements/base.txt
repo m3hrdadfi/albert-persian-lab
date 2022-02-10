@@ -4,7 +4,7 @@ Pillow==8.2.0
 pandas==1.0.5
 hazm==0.7.0
 clean-text[gpl]
-tensorflow==2.5.0
+tensorflow==2.5.3
 transformers==3.0.2
 plotly==4.9.0
 gdown==3.12.0
